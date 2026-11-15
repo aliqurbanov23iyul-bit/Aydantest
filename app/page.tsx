@@ -37,7 +37,7 @@ export default async function Home() {
           <p>Yapay zekâ ile dilediğin dersten, dilediğin zorlukta test oluştur, eksiklerini gör ve sınavlarına hazırlan.</p>
           <div className="row"><Link className="btn primary" href={user ? "/exam/create" : "/register"}><Rocket size={18}/> Hemen Başla</Link><Link className="btn outline" href="/ornek-sinav"><Play size={16}/> Örnek Testi Çöz</Link></div>
         </div>
-        <div className="home-illustration"><span className="hero-orbit" aria-hidden="true"/><span className="hero-glint" aria-hidden="true"/><Image src="/art/ai-study.webp" alt="" fill sizes="(max-width: 760px) 90vw, 48vw" preload/></div>
+        <div className="home-illustration"><span className="hero-orbit" aria-hidden="true"/><span className="hero-glint" aria-hidden="true"/><Image src="/art/ai-study.webp" alt="" fill unoptimized preload/></div>
       </div>
       <div className="feature-grid" id="ozellikler">{features.map(([Icon, title, detail]) => <div className="card feature" key={title}><span className="iconbox"><Icon size={24}/></span><div><strong>{title}</strong><small>{detail}</small></div></div>)}</div>
     </section>

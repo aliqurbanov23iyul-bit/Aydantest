@@ -18,7 +18,7 @@ export function CourseCard({course, href, detail, action, progress, compact=fals
   const hasArt = illustratedCourses.has(course.id);
   return <Link href={href} data-color={course.color} className={"card course-cover" + (compact ? " course-cover-compact" : "")}>
     <div className="course-visual">
-      {hasArt ? <Image src={`/art/courses/${course.id}.webp`} alt="" fill sizes={compact ? "(max-width: 500px) 44vw, 140px" : "(max-width: 600px) 94vw, (max-width: 1100px) 45vw, 320px"}/> : <CourseIcon {...course}/>}
+      {hasArt ? <Image src={`/art/courses/${course.id}.webp`} alt="" fill unoptimized/> : <CourseIcon {...course}/>}
     </div>
     <div className="course-cover-body">
       <h3>{course.name}</h3>

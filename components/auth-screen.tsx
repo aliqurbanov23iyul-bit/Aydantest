@@ -8,7 +8,7 @@ export function AuthScreen({mode,error,accountReady=true}:{mode:"login"|"registe
   return <main className="auth-page landing">
     <div className="auth-visual">
       <p>Derslerine<br/> AI gücüyle hazırlan!</p>
-      <div className="auth-illustration"><Image src="/art/study-desk.webp" alt="" fill sizes="(max-width: 760px) 0px, 56vw" preload/></div>
+      <div className="auth-illustration"><Image src="/art/study-desk.webp" alt="" fill unoptimized preload/></div>
     </div>
     <div className="auth-column stack">
       <Brand/>
