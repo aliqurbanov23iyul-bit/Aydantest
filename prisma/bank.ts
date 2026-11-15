@@ -1,0 +1,9 @@
+export const starterBank = [
+ ["sosyoloji",1,"Aile ve okulun toplumsallaşmadaki ortak işlevi aşağıdakilerden hangisidir?","Toplumsal normları aktarmak","Fiziksel çevreyi değiştirmek","Gelir dağılımını ölçmek","Teknolojik üretimi artırmak","Aile ve okul toplumsal değer ve normların öğrenilmesinde rol oynar."],
+ ["egitim",0,"Çocuğun arkadaşlarıyla oynarken kendiliğinden yeni kelimeler öğrenmesi hangi eğitim türüne örnektir?","İnformal eğitim","Örgün eğitim","Hizmet içi eğitim","Uzaktan eğitim","Kendiliğinden ve önceden düzenlenmiş bir program olmadan gelişen öğrenme informal eğitimdir."],
+ ["tarih",1,"Laiklik ilkesi, devlet işlerinin düzenlenmesinde hangi yaklaşımı benimser?","Din ve devlet işlerinin ayrılması","Ekonominin bütünüyle devlet tarafından yönetilmesi","Yönetimin hanedan tarafından devralınması","Tüm yerel yönetimlerin kaldırılması","Laiklik din ve devlet işlerinin ayrılmasını, devletin inançlar karşısında tarafsızlığını esas alır."],
+ ["bilisim",0,"Yazı düzenleyicide yapılan son işlemi geri almak için yaygın kısayol hangisidir?","Ctrl + Z","Ctrl + A","Ctrl + P","Ctrl + F","Ctrl + Z son işlemi geri alır. Ctrl + A tümünü seçer, Ctrl + P yazdırır ve Ctrl + F arama açar."],
+ ["matematik",1,"Bir bütünün eşit büyüklükteki dört parçasından üçü hangi kesirle gösterilir?","3/4","4/3","1/4","3/3","Payda bütünün eşit parça sayısını, pay alınan parça sayısını gösterir."],
+ ["turkce",0,"Aşağıdakilerden hangisinde soru eki doğru yazılmıştır?","Geldin mi?","Geldinmi?","Geldin-mi?","Geldin m i?","Soru eki mi kendisinden önceki sözcükten ayrı yazılır."],
+ ["cografya",1,"Karadeniz kıyılarında yaygın doğal bitki örtüsü aşağıdakilerden hangisidir?","Orman","Bozkır","Maki","Çöl bitkileri","Karadeniz kıyılarındaki yıl boyu yağış, orman örtüsünün gelişmesini destekler."],
+] as const;

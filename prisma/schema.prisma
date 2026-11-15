@@ -1,0 +1,179 @@
+generator client {
+  provider = "prisma-client-js"
+}
+datasource db {
+  provider = "postgresql"
+  url = env("DATABASE_URL")
+}
+model User {
+  id String @id @default(cuid())
+  email String @unique
+  name String
+  password String
+  role String @default("STUDENT")
+  goal Int @default(20)
+  sessionVersion Int @default(0)
+  resets PasswordReset[]
+  avatar String @default("🎓")
+  exams Exam[]
+  questions Question[]
+  favorites FavoriteQuestion[]
+  materials StudyMaterial[]
+  conversations AIConversation[]
+  plan StudyPlan?
+  usage AIUsageLog[]
+  createdAt DateTime @default(now())
+}
+model Course {
+  id String @id
+  name String
+  color String
+  icon String
+  topics Topic[]
+  questions Question[]
+}
+model Topic {
+  id String @id
+  name String
+  courseId String
+  course Course @relation(fields:[courseId], references:[id])
+  questions Question[]
+  @@unique([courseId,name])
+}
+model Question {
+  id String @id @default(cuid())
+  courseId String
+  course Course @relation(fields:[courseId], references:[id])
+  topicId String
+  topic Topic @relation(fields:[topicId], references:[id])
+  ownerId String?
+  owner User? @relation(fields:[ownerId], references:[id], onDelete:Cascade)
+  kind String
+  difficulty String
+  prompt String
+  options String[]
+  answer String
+  explanation String
+  source String?
+  origin String @default("AI")
+  active Boolean @default(true)
+  createdAt DateTime @default(now())
+  items ExamQuestion[]
+  favorites FavoriteQuestion[]
+  reports QuestionReport[]
+  @@index([courseId,topicId,active])
+  @@index([ownerId])
+}
+model Exam {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  requestId String
+  mode String
+  configuration Json
+  status String @default("GENERATING")
+  source String
+  createdAt DateTime @default(now())
+  startedAt DateTime?
+  expiresAt DateTime?
+  completedAt DateTime?
+  items ExamQuestion[]
+  @@unique([userId,requestId])
+  @@index([userId,status,createdAt])
+}
+model ExamQuestion {
+  id String @id @default(cuid())
+  examId String
+  exam Exam @relation(fields:[examId], references:[id], onDelete:Cascade)
+  questionId String
+  question Question @relation(fields:[questionId], references:[id], onDelete:Cascade)
+  position Int
+  snapshot Json
+  response String?
+  marked Boolean @default(false)
+  correct Boolean?
+  locked Boolean @default(false)
+  @@unique([examId,position])
+  @@index([questionId])
+}
+model FavoriteQuestion {
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  questionId String
+  question Question @relation(fields:[questionId], references:[id], onDelete:Cascade)
+  @@id([userId,questionId])
+}
+model StudyMaterial {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  name String
+  courseId String
+  content Json
+  createdAt DateTime @default(now())
+  @@index([userId])
+}
+model StudyPlan {
+  userId String @id
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  examDate DateTime
+  courseIds String[]
+}
+model AIConversation {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  contextId String?
+  messages AIMessage[]
+  updatedAt DateTime @updatedAt
+  @@index([userId,updatedAt])
+}
+model AIMessage {
+  id String @id @default(cuid())
+  conversationId String
+  conversation AIConversation @relation(fields:[conversationId], references:[id], onDelete:Cascade)
+  role String
+  text String
+  createdAt DateTime @default(now())
+  @@index([conversationId,createdAt])
+}
+model AIUsageLog {
+  id String @id @default(cuid())
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  day String
+  units Int @default(0)
+  @@unique([userId,day])
+}
+model SystemSetting {
+  key String @id
+  value Int
+}
+model QuestionReport {
+  id String @id @default(cuid())
+  userId String
+  questionId String
+  question Question @relation(fields:[questionId], references:[id], onDelete:Cascade)
+  text String
+  resolved Boolean @default(false)
+  @@unique([userId,questionId])
+}
+model AdminAuditLog {
+  id String @id @default(cuid())
+  actorId String
+  action String
+  target String
+  createdAt DateTime @default(now())
+}
+model RateLimit {
+  key String @id
+  count Int @default(0)
+  expiresAt DateTime
+}
+model PasswordReset {
+  hash String @id
+  userId String
+  user User @relation(fields:[userId], references:[id], onDelete:Cascade)
+  expiresAt DateTime
+  @@index([userId])
+}
