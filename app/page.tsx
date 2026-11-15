@@ -1,7 +1,8 @@
+import { CourseCard } from "@/components/course-card";
 import Image from "next/image";
 import Link from "next/link";
 import { BarChart3, BookOpen, Play, Rocket, Sparkles, Trophy, Zap } from "lucide-react";
-import { Brand, CourseIcon } from "@/components/ui";
+import { Brand } from "@/components/ui";
 import { catalog } from "@/lib/catalog";
 import { getUser } from "@/lib/user";
 
@@ -36,10 +37,10 @@ export default async function Home() {
           <p>Yapay zekâ ile dilediğin dersten, dilediğin zorlukta test oluştur, eksiklerini gör ve sınavlarına hazırlan.</p>
           <div className="row"><Link className="btn primary" href={user ? "/exam/create" : "/register"}><Rocket size={18}/> Hemen Başla</Link><Link className="btn outline" href="/ornek-sinav"><Play size={16}/> Örnek Testi Çöz</Link></div>
         </div>
-        <div className="home-illustration"><Image src="/art/ai-study.webp" alt="" fill sizes="(max-width: 760px) 90vw, 48vw" preload/></div>
+        <div className="home-illustration"><span className="hero-orbit" aria-hidden="true"/><span className="hero-glint" aria-hidden="true"/><Image src="/art/ai-study.webp" alt="" fill sizes="(max-width: 760px) 90vw, 48vw" preload/></div>
       </div>
       <div className="feature-grid" id="ozellikler">{features.map(([Icon, title, detail]) => <div className="card feature" key={title}><span className="iconbox"><Icon size={24}/></span><div><strong>{title}</strong><small>{detail}</small></div></div>)}</div>
     </section>
-    <section className="stack home-courses" id="dersler"><h2>Dersler</h2><div className="grid">{catalog.map(course => <article className="card course" key={course.id}><CourseIcon {...course}/><h3>{course.name}</h3><small>{course.topics.length} başlangıç konusu</small></article>)}</div></section>
+    <section className="stack home-courses" id="dersler" aria-labelledby="course-heading"><div className="between course-gallery-heading"><h2 id="course-heading">Dersler</h2><Link className="text-link" href={user ? "/courses" : "/ornek-sinav"}>{user ? "Tüm Dersler" : "Tüm Örnek Sorular"} <span aria-hidden="true">→</span></Link></div><div className="course-gallery">{catalog.map(course => <CourseCard key={course.id} course={course} href={user ? "/courses/" + course.id : "/ornek-sinav?ders=" + course.id} detail={course.topics.length + " başlangıç konusu"} action={user ? "Dersi Aç" : "Örnek Soru Çöz"}/>)}</div></section>
   </main>;
 }

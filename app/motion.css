@@ -33,7 +33,6 @@ html:has(body[data-theme=light]) {
 .feature:nth-child(2) .iconbox { color:#6ee6b4; background:#48b78c24 }
 .feature:nth-child(3) .iconbox { color:#7dc4ff; background:#4793cf2a }
 .feature:nth-child(4) .iconbox { color:#ffd177; background:#e2aa4530 }
-.home-courses .course { background:linear-gradient(145deg,var(--raised),var(--panel)); }
 .sidebar { background:var(--bg) }
 .sidebar .footer { margin-top:auto }
 .navlink[aria-current=page] { color:white; background:#46308a; border-color:#7052b7 }
@@ -52,9 +51,6 @@ html:has(body[data-theme=light]) {
 .dashboard-create p { margin-top:6px; color:#f2defd }
 .dashboard-create .iconbox { background:#ffffff30; color:white }
 .dashboard-courses { display:grid; grid-template-columns:repeat(7,minmax(110px,1fr)); gap:10px }
-.dashboard-courses .course { padding:12px 9px; text-align:center; grid-template-rows:auto minmax(2.8em,1fr) auto auto; justify-items:center; gap:8px }
-.dashboard-courses h3 { font-size:13px; line-height:1.3; font-weight:650; align-self:center }
-.dashboard-courses .bar { width:100% }
 .builder { display:grid; grid-template-columns:1.24fr 1fr; gap:14px }
 .builder-sources { grid-column:1/-1; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:3px; gap:4px }
 .builder-choice { cursor:pointer; display:flex; position:relative; align-items:center; justify-content:center; gap:8px; padding:8px 11px; border:1px solid transparent; border-radius:9px; color:var(--ink) }

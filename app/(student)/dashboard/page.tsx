@@ -1,10 +1,11 @@
+import { CourseCard } from "@/components/course-card";
 import Link from "next/link";
 import { ArrowRight, BookOpen, Check, Crown, Flame, Sparkles, TrendingUp } from "lucide-react";
 import { requireUser } from "@/lib/user";
 import { breakdown, progress } from "@/lib/stats";
 import { db } from "@/lib/db";
 import { catalog } from "@/lib/catalog";
-import { Bar, CourseIcon } from "@/components/ui";
+import { Bar } from "@/components/ui";
 import { Breakdown, ExamRows } from "@/components/progress";
 import { WeekChart } from "@/components/charts";
 
@@ -32,7 +33,7 @@ export default async function Dashboard() {
     </div>
     <section className="stack"><div className="between"><h2>Derslerim</h2><Link href="/courses" className="text-link">Tüm Dersler <span aria-hidden="true">→</span></Link></div><div className="dashboard-courses">{orderedCourses.map(course => {
       const score = courseStats.get(course.name)?.percent;
-      return <Link href={"/courses/" + course.id} key={course.id} className="card course"><CourseIcon {...course}/><h3>{course.name}</h3><small>{score === undefined ? "Henüz test yok" : "%" + score}</small><Bar value={score ?? 0}/></Link>;
+      return <CourseCard key={course.id} course={course} href={"/courses/" + course.id} detail={score === undefined ? "Henüz test yok" : "%" + score} progress={score ?? 0} compact/>;
     })}</div></section>
     <div className="split dashboard-details"><section className="card stack"><h2>Haftalık Çalışma</h2><WeekChart data={data.week}/></section><section className="card stack"><h2>Son Sınavlar</h2><ExamRows exams={data.exams.slice(0,4)}/></section></div>
     <Breakdown title="Derslere Göre Başarı" rows={breakdown(data.items, "course")}/>
