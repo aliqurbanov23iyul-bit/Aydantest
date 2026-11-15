@@ -12,5 +12,5 @@ export default async function Create({searchParams}:{searchParams:Promise<{cours
   retry?db.examQuestion.findMany({where:{exam:{userId:user.id,status:"COMPLETE",...(retry==="all"?{}:{id:retry})},correct:false},select:{question:{select:{courseId:true}}}}):[],
  ]);
  const initial=course?courses.filter(item=>item.id===course).map(item=>item.id):[...new Set(wrong.map(item=>item.question.courseId))];
- return <div className="stack"><Header title="Yeni test oluştur" detail="Derslerini seç ve testin nasıl hazırlanacağını belirle."/><ExamBuilder courses={courses} initial={initial} materials={materials} hasAI={Boolean(process.env.GEMINI_API_KEY)} retry={Boolean(retry)}/></div>;
+ return <div className="stack builder-heading"><Header title="Yeni Test Oluştur" detail="Derslerini seç ve testin nasıl hazırlanacağını belirle."/><ExamBuilder courses={courses} initial={initial} materials={materials} hasAI={Boolean(process.env.GEMINI_API_KEY)} retry={Boolean(retry)}/></div>;
 }

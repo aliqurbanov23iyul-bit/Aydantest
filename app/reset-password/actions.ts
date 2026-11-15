@@ -25,7 +25,7 @@ export async function resetPassword(mode:"request"|"reset",_previous:State,form:
   const link=new URL("/reset-password",appUrl);link.searchParams.set("token",token);
   await db.passwordReset.create({data:{hash,userId:user.id,expiresAt:new Date(Date.now()+1800000)}});
   try{
-   const response=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:"Bearer "+apiKey,"Content-Type":"application/json"},body:JSON.stringify({from:sender,to:[email.data],subject:"AkademiAI · Şifre sıfırlama",text:"Şifrenizi 30 dakika içinde şu bağlantıdan sıfırlayın: "+link.href}),signal:AbortSignal.timeout(10000)});
+   const response=await fetch("https://api.resend.com/emails",{method:"POST",headers:{Authorization:"Bearer "+apiKey,"Content-Type":"application/json"},body:JSON.stringify({from:sender,to:[email.data],subject:"AydanTest · Şifre sıfırlama",text:"Şifrenizi 30 dakika içinde şu bağlantıdan sıfırlayın: "+link.href}),signal:AbortSignal.timeout(10000)});
    if(!response.ok)await db.passwordReset.deleteMany({where:{hash}});
   }catch{await db.passwordReset.deleteMany({where:{hash}});}
   return message;

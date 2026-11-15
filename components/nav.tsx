@@ -3,7 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { LayoutGrid,BookOpen,Sparkles,History,RotateCcw,Bookmark,Bot,CalendarDays,Trophy,BarChart3,UserRound,Settings,Shield } from "lucide-react";
 const links=[
- ["/dashboard","Genel Bakış",LayoutGrid],["/courses","Dersler",BookOpen],["/exam/create","Yeni Test",Sparkles],["/history","Sınav Geçmişi",History],["/wrong-answers","Yanlışlarım",RotateCcw],["/favorites","Favoriler",Bookmark],["/ai-teacher","AI Öğretmen",Bot],["/study-plan","Çalışma Planı",CalendarDays],["/achievements","Başarılar",Trophy],["/statistics","İstatistikler",BarChart3],["/profile","Profil",UserRound],["/settings","Ayarlar",Settings],["/admin","Yönetim",Shield],
+ ["/dashboard","Ana Panel",LayoutGrid],["/courses","Dersler",BookOpen],["/exam/create","Test Oluştur",Sparkles],["/history","Test Geçmişi",History],["/wrong-answers","Yanlış Sorular",RotateCcw],["/favorites","Favoriler",Bookmark],["/ai-teacher","AI Öğretmen",Bot],["/study-plan","Çalışma Planı",CalendarDays],["/achievements","Başarılar",Trophy],["/statistics","İstatistikler",BarChart3],["/profile","Profil",UserRound],["/settings","Ayarlar",Settings],["/admin","Yönetim",Shield],
 ] as const;
 export function Nav({admin}:{admin:boolean}) {
  const path=usePathname();

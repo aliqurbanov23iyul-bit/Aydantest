@@ -1,6 +1,5 @@
-import {Brand,Header} from "@/components/ui";
-import {AccountForm} from "@/components/account-form";
-import {GoogleButton} from "@/components/google-button";
-export default function Register(){
- return <main className="landing"><Brand/><section className="authbox stack"><Header title="Hesap oluştur" detail="Derslerini seç ve ilk testini hazırla."/><GoogleButton/><AccountForm mode="register"/></section></main>;
+import { AuthScreen } from "@/components/auth-screen";
+
+export default function Register() {
+  return <AuthScreen mode="register" accountReady={Boolean(process.env.DATABASE_URL && process.env.AUTH_SECRET)}/>;
 }
